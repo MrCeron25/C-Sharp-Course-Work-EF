@@ -6,6 +6,7 @@ BEGIN
 END
 CREATE DATABASE course_work_EF;
 */
+
 use course_work_EF;
 
 drop table if exists order_details;
@@ -28,7 +29,8 @@ drop table if exists products;
 create table products(
 	[product_id] bigint not null identity primary key,
 	[product_name] nvarchar(max) not null,
-	[unit_price] money
+	[unit_price] money,
+	[number_of_orders] bigint default 0 not null
 );
 
 drop table if exists properties;
@@ -68,6 +70,48 @@ create table order_details(
 	FOREIGN KEY ([order_id]) REFERENCES [orders] (order_id),
 	FOREIGN KEY ([product_id]) REFERENCES products ([product_id])
 );
+
+GO
+IF EXISTS (SELECT * FROM sys.objects WHERE [name] = N'Trigger_counter' AND [type] = 'TR')
+BEGIN
+      DROP TRIGGER Trigger_counter;
+END;
+GO
+
+--SELECT * FROM sys.objects where [type] = 'TR'
+
+GO
+CREATE TRIGGER Trigger_counter
+ON order_details
+AFTER INSERT
+AS
+BEGIN
+	declare @quantity bigint, @product_id bigint;
+	-- set @quantity = (select quantity from inserted);
+	-- set @product_id = (select product_id from inserted);
+
+	DECLARE [cursor] CURSOR FOR 
+	SELECT quantity, product_id
+	FROM inserted;
+
+	OPEN [cursor] 
+	--считываем данные первой строки в наши переменные
+	FETCH NEXT FROM [cursor] INTO @quantity, @product_id;
+
+	WHILE (@@FETCH_STATUS = 0) BEGIN  
+		
+		update products
+		set number_of_orders += @quantity
+		where product_id = @product_id;
+
+		FETCH NEXT FROM [cursor] INTO @quantity, @product_id;
+	END;
+
+	--закрываем курсор
+	CLOSE [cursor];
+	DEALLOCATE [cursor];
+END;
+GO
 
 insert into [system]([login],[password],[is_admin],[buyer_id]) values
 ('1', '1', 0, 1),
@@ -135,20 +179,23 @@ insert into order_details(order_id, product_id, unit_price, quantity) values
 (10, 10, 5150, 1);
 
 --select * from order_details;
+--select * from products;
+--select * from properties;
 
---insert into products(product_id, attribute, [value], unit_price) values
---(1, '', '', 3000);
+insert into properties(product_id, attribute, [value]) values
+(1, 'Гарантия', '12 мес.'),
+(1, 'Модель', 'GIGABYTE GeForce RTX 2060 D6 6G (rev. 2.0)'),
+(1, 'Микроархитектура', 'NVIDIA Turing'),
+(1, 'Объем видеопамяти', '6 ГБ'),
+(2, 'Графический процессор', 'Radeon RX 6600'),
+(2, 'Микроархитектура', 'AMD RDNA 2'),
+(3, 'Модель', 'LG 24EA430V-B'),
+(3, 'Максимальное разрешение', '1920x1080'),
+(3, 'Диагональ экрана (дюйм)', '23.8"'),
+(5, 'Максимальное разрешение', '1920x1080'),
+(6, 'Тип клавиатуры', 'механическая'),
+(7, 'Модель', 'Logitech G413 CARBON'),
+(8, 'Материал корпуса', 'пластик, металл'),
+(9, 'Модель', 'Lenovo Go USB-C Wireless Mouse');
 
-/*
-insert into order_details([order_id], [product_id]) values
-(1),
 
-
-drop table if exists order_details;
-create table order_details(
-	[order_id] bigint not null,
-	[product_id] bigint not null,
-	primary key ([order_id], [product_id]),
-	[unit_price] money,
-	[quantity]
-*/
