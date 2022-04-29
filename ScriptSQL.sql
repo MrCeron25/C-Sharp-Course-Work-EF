@@ -9,20 +9,29 @@ CREATE DATABASE course_work_EF;
 
 use course_work_EF;
 
+drop table if exists [system];
 drop table if exists order_details;
 drop table if exists orders;
-drop table if exists buyer;
 drop table if exists properties;
 drop table if exists products;
-drop table if exists [system];
+drop table if exists buyer;
+
+drop table if exists buyer;
+create table buyer(
+	buyer_id bigint identity primary key,
+	[name] nvarchar(255) not null,
+	[surname] nvarchar(255) not null,
+	[sex] nvarchar(1) not null
+	check([sex] = 'Ж' or [sex] = 'М')
+);
 
 drop table if exists [system];
 create table [system](
-	[system_user_id] bigint identity primary key,
+	[system_user_id] bigint primary key,
 	[login] nvarchar(255) not null,
 	[password] nvarchar(255) not null,
 	[is_admin] bit not null default 0,
-	[buyer_id] bigint unique
+	FOREIGN KEY ([system_user_id]) REFERENCES buyer (buyer_id)
 );
 
 drop table if exists products;
@@ -39,16 +48,6 @@ create table properties(
 	[attribute] nvarchar(max) not null,
 	[value] nvarchar(max) not null,
 	FOREIGN KEY ([product_id]) REFERENCES products ([product_id])
-);
-
-drop table if exists buyer;
-create table buyer(
-	buyer_id bigint identity primary key,
-	[name] nvarchar(255) not null,
-	[surname] nvarchar(255) not null,
-	[sex] nvarchar(1) not null
-	check([sex] = 'Ж' or [sex] = 'М'),
-	FOREIGN KEY (buyer_id) REFERENCES [system] ([system_user_id])
 );
 
 drop table if exists orders;
@@ -113,18 +112,6 @@ BEGIN
 END;
 GO
 
-insert into [system]([login],[password],[is_admin],[buyer_id]) values
-('1', '1', 0, 1),
-('2', '1', 1, 2),
-('user3', 'BRQtbB0urH5UgQVfAZ9X', 1, 3),
-('user4', 'LKhjjyegydQc4RyJGN20', 1, 4),
-('user5', '9nznfooE20WqAviwV36J', 1, 5),
-('user6', 'ysz10fxfJJwB5go4wWuZ', 0, 6),
-('user7', 'odpf2WfpoJNeFwxqMxbw', 0, 7),
-('user8', 'hnXRdYghr4DsWuodYM01', 0, 8),
-('user9', 'tn9W4nm144D1swMTiJzv', 0, 9),
-('user10', 'Y6QFMVD6m4PWguNwqTyP', 0, 10);
-
 insert into buyer([name], [surname], sex) values
 ('Авдеев', 'Тихон', 'М'),
 ('Брагин', 'Любомир', 'М'),
@@ -136,6 +123,18 @@ insert into buyer([name], [surname], sex) values
 ('Алексеева', 'Аксинья', 'Ж'),
 ('Красильникова', 'Анна', 'Ж'),
 ('Гуляева', 'Анита', 'Ж');
+
+insert into [system]([system_user_id],[login],[password],[is_admin]) values
+(1,'1', '1', 0),
+(2,'2', '1', 1),
+(3,'user3', 'BRQtbB0urH5UgQVfAZ9X', 1),
+(4,'user4', 'LKhjjyegydQc4RyJGN20', 1),
+(5,'user5', '9nznfooE20WqAviwV36J', 1),
+(6,'user6', 'ysz10fxfJJwB5go4wWuZ', 0),
+(7,'user7', 'odpf2WfpoJNeFwxqMxbw', 0),
+(8,'user8', 'hnXRdYghr4DsWuodYM01', 0),
+(9,'user9', 'tn9W4nm144D1swMTiJzv', 0),
+(10,'user10', 'Y6QFMVD6m4PWguNwqTyP', 0);
 
 insert into orders([buyer_id]) values
 (1),
@@ -181,6 +180,8 @@ insert into order_details(order_id, product_id, unit_price, quantity) values
 --select * from order_details;
 --select * from products;
 --select * from properties;
+select * from system;
+select * from buyer;
 
 insert into properties(product_id, attribute, [value]) values
 (1, 'Гарантия', '12 мес.'),
@@ -197,5 +198,4 @@ insert into properties(product_id, attribute, [value]) values
 (7, 'Модель', 'Logitech G413 CARBON'),
 (8, 'Материал корпуса', 'пластик, металл'),
 (9, 'Модель', 'Lenovo Go USB-C Wireless Mouse');
-
 

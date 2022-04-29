@@ -5,8 +5,59 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" 
+        Height="500"
+        Width="800"
+        MinHeight="500"
+        MinWidth="800">
+    <Window.Resources>
+        <ControlTemplate TargetType="Button" 
+                         x:Key="ButtonTemplate">
+            <Border CornerRadius="20"
+                    Margin="10,5,10,10"
+                    BorderThickness="2"
+                    Height="40"
+                    Background="#FFFFF2C9"/>
+        </ControlTemplate>
+    </Window.Resources>
+
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="327*"/>
+        </Grid.ColumnDefinitions>
+
+        <Frame Grid.Column="1"
+               x:Name="MainFrame"
+               NavigationUIVisibility="Hidden"/>
+
+        <Rectangle Grid.Column="0">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="#FFB695FF" />
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center" Margin="0,193,0,199.4">
+
+            <Button x:Name="Login"
+                    BorderBrush="Black" 
+                    Content="Вход" 
+                    MinHeight="30"
+                    Margin="5,5,5,5"
+                    FontFamily="Arial Black" 
+                    FontSize="18"
+                    Click="Login_Click">
+            </Button>
+
+            <Button x:Name="Registration"
+                    BorderBrush="Black" 
+                    Content="Регистрация" 
+                    MinHeight="30"
+                    Margin="5,5,5,5"
+                    FontFamily="Arial Black" 
+                    FontSize="18"
+                    Click="Registration_Click">
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>

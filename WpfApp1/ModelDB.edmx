@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище course_work_EFModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="buyer">
+          <Key>
+            <PropertyRef Name="buyer_id" />
+          </Key>
+          <Property Name="buyer_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="sex" Type="nvarchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="order_details">
+          <Key>
+            <PropertyRef Name="order_id" />
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="order_id" Type="bigint" Nullable="false" />
+          <Property Name="product_id" Type="bigint" Nullable="false" />
+          <Property Name="unit_price" Type="money" />
+          <Property Name="quantity" Type="bigint" />
+          <Property Name="total_price" Type="money" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="buyer_id" Type="bigint" Nullable="false" />
+          <Property Name="order_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="unit_price" Type="money" />
+          <Property Name="number_of_orders" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "course_work_EF.dbo.properties" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="properties">
+          <Key>
+            <PropertyRef Name="product_id" />
+            <PropertyRef Name="attribute" />
+            <PropertyRef Name="value" />
+          </Key>
+          <Property Name="product_id" Type="bigint" Nullable="false" />
+          <Property Name="attribute" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="value" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="system">
+          <Key>
+            <PropertyRef Name="system_user_id" />
+          </Key>
+          <Property Name="system_user_id" Type="bigint" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="is_admin" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__order_det__order__7108AC61">
+          <End Role="orders" Type="Self.orders" Multiplicity="1" />
+          <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="order_id" />
+            </Principal>
+            <Dependent Role="order_details">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__order_det__produ__71FCD09A">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="order_details">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__orders__buyer_id__6E2C3FB6">
+          <End Role="buyer" Type="Self.buyer" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="buyer">
+              <PropertyRef Name="buyer_id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="buyer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__propertie__produ__6A5BAED2">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="properties" Type="Self.properties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="properties">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__system__system_u__6596F9B5">
+          <End Role="buyer" Type="Self.buyer" Multiplicity="1" />
+          <End Role="system" Type="Self.system" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="buyer">
+              <PropertyRef Name="buyer_id" />
+            </Principal>
+            <Dependent Role="system">
+              <PropertyRef Name="system_user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище course_work_EFModelContainer">
+          <EntitySet Name="buyer" EntityType="Self.buyer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="order_details" EntityType="Self.order_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="system" EntityType="Self.system" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="properties" EntityType="Self.properties" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [properties].[product_id] AS [product_id], 
+    [properties].[attribute] AS [attribute], 
+    [properties].[value] AS [value]
+    FROM [dbo].[properties] AS [properties]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__order_det__order__7108AC61" Association="Self.FK__order_det__order__7108AC61">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="order_details" EntitySet="order_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__order_det__produ__71FCD09A" Association="Self.FK__order_det__produ__71FCD09A">
+            <End Role="products" EntitySet="products" />
+            <End Role="order_details" EntitySet="order_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__orders__buyer_id__6E2C3FB6" Association="Self.FK__orders__buyer_id__6E2C3FB6">
+            <End Role="buyer" EntitySet="buyer" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__propertie__produ__6A5BAED2" Association="Self.FK__propertie__produ__6A5BAED2">
+            <End Role="products" EntitySet="products" />
+            <End Role="properties" EntitySet="properties" />
+          </AssociationSet>
+          <AssociationSet Name="FK__system__system_u__6596F9B5" Association="Self.FK__system__system_u__6596F9B5">
+            <End Role="buyer" EntitySet="buyer" />
+            <End Role="system" EntitySet="system" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="course_work_EFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="buyer">
+          <Key>
+            <PropertyRef Name="buyer_id" />
+          </Key>
+          <Property Name="buyer_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="surname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sex" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="orders" Relationship="Self.FK__orders__buyer_id__3C54ED00" FromRole="buyer" ToRole="orders" />
+          <NavigationProperty Name="system2" Relationship="course_work_EFModel.FK__system__is_admin__34D3C6C9" FromRole="buyer" ToRole="system" />
+        </EntityType>
+        <EntityType Name="order_details">
+          <Key>
+            <PropertyRef Name="order_id" />
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="order_id" Type="Int64" Nullable="false" />
+          <Property Name="product_id" Type="Int64" Nullable="false" />
+          <Property Name="unit_price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="quantity" Type="Int64" />
+          <Property Name="total_price" Type="Decimal" Precision="19" Scale="4" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="orders" Relationship="Self.FK__order_det__order__3F3159AB" FromRole="order_details" ToRole="orders" />
+          <NavigationProperty Name="products" Relationship="Self.FK__order_det__produ__40257DE4" FromRole="order_details" ToRole="products" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="buyer_id" Type="Int64" Nullable="false" />
+          <Property Name="order_date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="buyer" Relationship="Self.FK__orders__buyer_id__3C54ED00" FromRole="orders" ToRole="buyer" />
+          <NavigationProperty Name="order_details" Relationship="Self.FK__order_det__order__3F3159AB" FromRole="orders" ToRole="order_details" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="unit_price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="number_of_orders" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="order_details" Relationship="Self.FK__order_det__produ__40257DE4" FromRole="products" ToRole="order_details" />
+          <NavigationProperty Name="properties" Relationship="Self.FK__propertie__produ__34B3CB38" FromRole="products" ToRole="properties" />
+        </EntityType>
+        <EntityType Name="system">
+          <Key>
+            <PropertyRef Name="system_user_id" />
+          </Key>
+          <Property Name="system_user_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="is_admin" Type="Boolean" Nullable="false" />
+          <Property Name="buyer_id" Type="Int64" />
+          <NavigationProperty Name="buyer2" Relationship="course_work_EFModel.FK__system__is_admin__34D3C6C9" FromRole="system" ToRole="buyer" />
+        </EntityType>
+        <EntityType Name="properties">
+          <Key>
+            <PropertyRef Name="product_id" />
+            <PropertyRef Name="attribute" />
+            <PropertyRef Name="value" />
+          </Key>
+          <Property Name="product_id" Type="Int64" Nullable="false" />
+          <Property Name="attribute" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="products" Relationship="Self.FK__propertie__produ__34B3CB38" FromRole="properties" ToRole="products" />
+        </EntityType>
+        <Association Name="FK__orders__buyer_id__3C54ED00">
+          <End Role="buyer" Type="Self.buyer" Multiplicity="1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="buyer">
+              <PropertyRef Name="buyer_id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="buyer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__order_det__order__3F3159AB">
+          <End Role="orders" Type="Self.orders" Multiplicity="1" />
+          <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="order_id" />
+            </Principal>
+            <Dependent Role="order_details">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__order_det__produ__40257DE4">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="order_details">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__propertie__produ__34B3CB38">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="properties" Type="Self.properties" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="properties">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="course_work_EFEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="buyer" EntityType="Self.buyer" />
+          <EntitySet Name="order_details" EntityType="Self.order_details" />
+          <EntitySet Name="orders" EntityType="Self.orders" />
+          <EntitySet Name="products" EntityType="Self.products" />
+          <EntitySet Name="system" EntityType="Self.system" />
+          <EntitySet Name="properties" EntityType="Self.properties" />
+          <AssociationSet Name="FK__orders__buyer_id__3C54ED00" Association="Self.FK__orders__buyer_id__3C54ED00">
+            <End Role="buyer" EntitySet="buyer" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__order_det__order__3F3159AB" Association="Self.FK__order_det__order__3F3159AB">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="order_details" EntitySet="order_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__order_det__produ__40257DE4" Association="Self.FK__order_det__produ__40257DE4">
+            <End Role="products" EntitySet="products" />
+            <End Role="order_details" EntitySet="order_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__propertie__produ__34B3CB38" Association="Self.FK__propertie__produ__34B3CB38">
+            <End Role="products" EntitySet="products" />
+            <End Role="properties" EntitySet="properties" />
+          </AssociationSet>
+          <AssociationSet Name="FK__system__is_admin__34D3C6C9" Association="course_work_EFModel.FK__system__is_admin__34D3C6C9">
+            <End Role="buyer" EntitySet="buyer" />
+            <End Role="system" EntitySet="system" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK__system__is_admin__34D3C6C9">
+          <End Type="course_work_EFModel.buyer" Role="buyer" Multiplicity="1" />
+          <End Type="course_work_EFModel.system" Role="system" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="buyer">
+              <PropertyRef Name="buyer_id" />
+            </Principal>
+            <Dependent Role="system">
+              <PropertyRef Name="system_user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище course_work_EFModelContainer" CdmEntityContainer="course_work_EFEntities">
+          <EntitySetMapping Name="buyer">
+            <EntityTypeMapping TypeName="course_work_EFModel.buyer">
+              <MappingFragment StoreEntitySet="buyer">
+                <ScalarProperty Name="buyer_id" ColumnName="buyer_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order_details">
+            <EntityTypeMapping TypeName="course_work_EFModel.order_details">
+              <MappingFragment StoreEntitySet="order_details">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="unit_price" ColumnName="unit_price" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="total_price" ColumnName="total_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="course_work_EFModel.orders">
+              <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="buyer_id" ColumnName="buyer_id" />
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="course_work_EFModel.products">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="unit_price" ColumnName="unit_price" />
+                <ScalarProperty Name="number_of_orders" ColumnName="number_of_orders" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="system">
+            <EntityTypeMapping TypeName="course_work_EFModel.system">
+              <MappingFragment StoreEntitySet="system">
+                <ScalarProperty Name="system_user_id" ColumnName="system_user_id" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="is_admin" ColumnName="is_admin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="properties">
+            <EntityTypeMapping TypeName="course_work_EFModel.properties">
+              <MappingFragment StoreEntitySet="properties">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="attribute" ColumnName="attribute" />
+                <ScalarProperty Name="value" ColumnName="value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
