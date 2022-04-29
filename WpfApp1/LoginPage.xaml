@@ -12,10 +12,10 @@
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="Вход" Height="30" FontSize="25" TextAlignment="Center" Margin="10,10,10,10"/>
             <TextBlock Text="Логин" Height="30" FontSize="20" TextAlignment="Center" Margin="10,10,10,10"/>
-            <TextBox Height="30" MinWidth="200" Margin="10,10,10,10"/>
+            <TextBox Text="1" x:Name="Login" Height="30" MinWidth="200" Margin="10,10,10,10"/>
             <TextBlock Text="Пароль" Height="30" FontSize="20" TextAlignment="Center" Margin="10,10,10,10"/>
-            <TextBox Height="30" MinWidth="200" Margin="10,10,10,50"/>
-            <Button x:Name="Login" Height="30" Width="120" Content="Вход" FontSize="20" Click="Login_Click"/>
+            <PasswordBox x:Name="Password" Password="1" Height="30" MinWidth="200" Margin="10,10,10,50"/>
+            <Button x:Name="LoginButton" Height="30" Width="120" Content="Вход" FontSize="20" Click="Login_Click"/>
         </StackPanel>
     </Grid>
 </Page>

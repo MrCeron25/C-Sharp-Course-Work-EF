@@ -4,18 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6116494a7c8e491e9b4c561c6b8035b7" Name="Diagram1">
-        <EntityTypeShape EntityType="course_work_EFModel.buyer" Width="1.5" PointX="2.375" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="course_work_EFModel.order_details" Width="1.5" PointX="4.625" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="course_work_EFModel.orders" Width="1.5" PointX="4.625" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="course_work_EFModel.products" Width="1.5" PointX="6.875" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="course_work_EFModel.system" Width="1.5" PointX="2.25" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="course_work_EFModel.properties" Width="1.5" PointX="9.25" PointY="3.625" IsExpanded="true" />
-        <AssociationConnector Association="course_work_EFModel.FK__orders__buyer_id__3C54ED00" ManuallyRouted="false" />
-        <AssociationConnector Association="course_work_EFModel.FK__order_det__order__3F3159AB" ManuallyRouted="false" />
-        <AssociationConnector Association="course_work_EFModel.FK__order_det__produ__40257DE4" ManuallyRouted="false" />
-        <AssociationConnector Association="course_work_EFModel.FK__propertie__produ__34B3CB38" ManuallyRouted="false" />
-        <AssociationConnector Association="course_work_EFModel.FK__system__is_admin__34D3C6C9" />
+      <Diagram DiagramId="825bfe53f4ee483a8699a11fb3a39856" Name="Diagram1">
+        <EntityTypeShape EntityType="course_work_EFModel.buyer" Width="1.5" PointX="1.5" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="course_work_EFModel.order_details" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="course_work_EFModel.orders" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="course_work_EFModel.products" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="course_work_EFModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="course_work_EFModel.system" Width="1.5" PointX="3.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="course_work_EFModel.properties" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="course_work_EFModel.FK__orders__buyer_id__6E2C3FB6" ManuallyRouted="false" />
+        <AssociationConnector Association="course_work_EFModel.FK__system__system_u__6596F9B5" ManuallyRouted="false" />
+        <AssociationConnector Association="course_work_EFModel.FK__order_det__order__7108AC61" ManuallyRouted="false" />
+        <AssociationConnector Association="course_work_EFModel.FK__order_det__produ__71FCD09A" ManuallyRouted="false" />
+        <AssociationConnector Association="course_work_EFModel.FK__propertie__produ__6A5BAED2" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -24,7 +24,32 @@ namespace WpfApp1
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-
+            if (
+                !string.IsNullOrEmpty(Login.Text) &&
+                !string.IsNullOrEmpty(Password.Password)
+            )
+            {
+                List<system> LoginLists = (
+                    from user in Manager.Instance.Context.system
+                    where (user.login == Login.Text) && (user.password == Password.Password)
+                    select user
+                ).ToList();
+                if (LoginLists.Count == 0)
+                {
+                    MessageBox.Show("Неверный логин или пароль.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    Login.Text = "";
+                    Password.Password = "";
+                    Manager.Instance.MainFrame.Navigate(new UserPage());
+                    Manager.Instance.MenuFrame.Navigate(new UserMenuPage(LoginLists[0].system_user_id));
+                }
+            }
+            else
+            {
+                MessageBox.Show("Заполните все поля.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

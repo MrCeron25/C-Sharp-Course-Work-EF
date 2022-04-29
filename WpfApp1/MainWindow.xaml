@@ -31,33 +31,8 @@
                x:Name="MainFrame"
                NavigationUIVisibility="Hidden"/>
 
-        <Rectangle Grid.Column="0">
-            <Rectangle.Fill>
-                <SolidColorBrush Color="#FFB695FF" />
-            </Rectangle.Fill>
-        </Rectangle>
-
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center" Margin="0,193,0,199.4">
-
-            <Button x:Name="Login"
-                    BorderBrush="Black" 
-                    Content="Вход" 
-                    MinHeight="30"
-                    Margin="5,5,5,5"
-                    FontFamily="Arial Black" 
-                    FontSize="18"
-                    Click="Login_Click">
-            </Button>
-
-            <Button x:Name="Registration"
-                    BorderBrush="Black" 
-                    Content="Регистрация" 
-                    MinHeight="30"
-                    Margin="5,5,5,5"
-                    FontFamily="Arial Black" 
-                    FontSize="18"
-                    Click="Registration_Click">
-            </Button>
-        </StackPanel>
+        <Frame Grid.Column="0"
+               x:Name="MenuFrame"
+               NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

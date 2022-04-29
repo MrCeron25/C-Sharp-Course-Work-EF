@@ -15,19 +15,20 @@ using System.Windows.Shapes;
 
 namespace WpfApp1
 {
-    public partial class MainWindow : Window
+    public partial class MainMenuPage : Page
     {
-        public MainWindow()
+        public MainMenuPage()
         {
             InitializeComponent();
-            Manager.Instance.Context = new course_work_EFEntities();
-            Manager.Instance.MainWindow = this;
-
-            Manager.Instance.MainFrame = MainFrame;
+        }
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
             Manager.Instance.MainFrame.Navigate(new LoginPage());
+        }
 
-            Manager.Instance.MenuFrame = MenuFrame;
-            Manager.Instance.MenuFrame.Navigate(new MainMenuPage());
+        private void Registration_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.Instance.MainFrame.Navigate(new RegistrationPage());
         }
     }
 }

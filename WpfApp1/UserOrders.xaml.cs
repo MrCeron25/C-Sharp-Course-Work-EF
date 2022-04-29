@@ -15,19 +15,14 @@ using System.Windows.Shapes;
 
 namespace WpfApp1
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Логика взаимодействия для UserOrders.xaml
+    /// </summary>
+    public partial class UserOrders : Page
     {
-        public MainWindow()
+        public UserOrders()
         {
             InitializeComponent();
-            Manager.Instance.Context = new course_work_EFEntities();
-            Manager.Instance.MainWindow = this;
-
-            Manager.Instance.MainFrame = MainFrame;
-            Manager.Instance.MainFrame.Navigate(new LoginPage());
-
-            Manager.Instance.MenuFrame = MenuFrame;
-            Manager.Instance.MenuFrame.Navigate(new MainMenuPage());
         }
     }
 }

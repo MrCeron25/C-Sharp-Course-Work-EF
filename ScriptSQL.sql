@@ -177,11 +177,14 @@ insert into order_details(order_id, product_id, unit_price, quantity) values
 (9, 9, 5050, 3),
 (10, 10, 5150, 1);
 
---select * from order_details;
---select * from products;
---select * from properties;
+/*
+select * from order_details;
+select * from products;
+select * from properties;
 select * from system;
 select * from buyer;
+select * from orders;
+*/
 
 insert into properties(product_id, attribute, [value]) values
 (1, 'Гарантия', '12 мес.'),

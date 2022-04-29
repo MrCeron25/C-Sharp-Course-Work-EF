@@ -49,61 +49,53 @@ namespace WpfApp1
             {
                 if (CheckPassword(Password.Password))
                 {
-                    List<system> logiins = (
+                    List<system> LoginList = (
                         from user in Manager.Instance.Context.system
                         where user.login == Login.Text
                         select user
                     ).ToList();
-                    if (logiins.Count > 0)
+                    if (LoginList.Count > 0)
                     {
                         MessageBox.Show("Логин занят.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                     else
                     {
-                        //using (var db = new course_work_EFEntities())
-                        //{
-                        //    var qwe = db.buyer.Create();
-                        //    //buyer NewBuyer = new buyer
-                        //    //{
-                        //    //name = Name.Text,
-                        //    //    surname = Surname.Text,
-                        //    //    sex = Sex.Text.Substring(0, 1)
-                        //    //};
-                        //    qwe.buyer_id = 1;
-                        //    qwe.name = Name.Text;
-                        //    qwe.surname = Surname.Text;
-                        //    qwe.sex = Sex.Text.Substring(0, 1);
-                        //    db.buyer.Add(qwe);
-                        //    db.SaveChanges();
-                        //}
-
-                        buyer NewBuyer = new buyer
+                        bool IsGood = true;
+                        try
                         {
-                            name = Name.Text,
-                            surname = Surname.Text,
-                            sex = Sex.Text.Substring(0, 1)
-                        };
-                        Manager.Instance.Context.buyer.Add(NewBuyer);
+                            buyer NewBuyer = new buyer
+                            {
+                                name = Name.Text,
+                                surname = Surname.Text,
+                                sex = Sex.Text.Substring(0, 1)
+                            };
+                            Manager.Instance.Context.buyer.Add(NewBuyer);
 
+                            List<buyer> buyer = (
+                                from buyers in Manager.Instance.Context.buyer.OrderByDescending(s => s.buyer_id).Take(1)
+                                select buyers
+                            ).ToList();
+                            long LastBuyerId = buyer[0].buyer_id + 1;
+                            system NewSystem = new system
+                            {
+                                system_user_id = LastBuyerId,
+                                login = Login.Text,
+                                password = Password.Password,
+                                is_admin = false
+                            };
+                            Manager.Instance.Context.system.Add(NewSystem);
 
-
-                        List<buyer> buyer = (
-                            from buyers in Manager.Instance.Context.buyer.OrderByDescending(s => s.buyer_id).Take(1)
-                            select buyers
-                        ).ToList();
-                        long LastBuyerId = buyer[0].buyer_id + 1;
-                        system NewSystem = new system
+                            Manager.Instance.Context.SaveChanges();
+                        }
+                        catch (Exception error)
                         {
-                            login = Login.Text,
-                            password = Password.Password,
-                            is_admin = false,
-                            buyer_id = LastBuyerId
-                        };
-                        Manager.Instance.Context.system.Add(NewSystem);
-
-                        
-
-                        Manager.Instance.Context.SaveChanges();
+                            IsGood = false;
+                            MessageBox.Show(error.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        if (IsGood)
+                        {
+                            MessageBox.Show("Вы зарегистрированы.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
                     }
                 }
                 else

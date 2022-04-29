@@ -18,8 +18,7 @@ namespace WpfApp1
         public string login { get; set; }
         public string password { get; set; }
         public bool is_admin { get; set; }
-        public Nullable<long> buyer_id { get; set; }
     
-        public virtual buyer buyer2 { get; set; }
+        public virtual buyer buyer { get; set; }
     }
 }
