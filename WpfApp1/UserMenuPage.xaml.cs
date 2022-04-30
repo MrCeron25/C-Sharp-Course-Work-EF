@@ -17,11 +17,11 @@ namespace WpfApp1
 {
     public partial class UserMenuPage : Page
     {
-        private long UserId { get; set; }
-        public UserMenuPage(long UserId)
+        private system User { get; set; }
+        public UserMenuPage(system User)
         {
             InitializeComponent();
-            this.UserId = UserId;
+            this.User = User;
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -37,7 +37,7 @@ namespace WpfApp1
 
         private void Orders_Click(object sender, RoutedEventArgs e)
         {
-
+            Manager.Instance.MainFrame.Navigate(new UserOrders(User));
         }
     }
 }

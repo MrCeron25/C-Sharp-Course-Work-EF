@@ -9,8 +9,82 @@
       Title="UserOrders">
 
     <Grid Background="White">
-        <DataGrid Margin="20,20,20,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        </DataGrid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Column="0" 
+                   Grid.Row="0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Text="Заказы" 
+                   FontSize="26" 
+                   FontFamily="Arial Black"/>
+
+        <ListView Grid.Column="0" 
+                  Grid.Row="1"
+                  x:Name="Orders">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding order_id}" Header="№ заказа"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding order_date, StringFormat='dd-MM-yyyy'}" Header="Дата заказа"/>
+                </GridView>
+            </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="MouseLeftButtonUp" Handler="Orders_MouseLeftButtonUp" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        
+        <TextBlock Grid.Column="1" 
+                   Grid.Row="0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Text="Товары" 
+                   FontSize="26" 
+                   FontFamily="Arial Black"/>
+        <ListView Grid.Column="1" 
+                 Grid.Row="1"
+                 x:Name="Products">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding product_name}" Header="Название товара"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding unit_price, StringFormat='N'}" Header="Цена за единицу"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding quantity}" Header="Количество"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding total_price, StringFormat='N'}" Header="Итоговая цена"/>
+                </GridView>
+            </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="MouseLeftButtonUp" Handler="Products_MouseLeftButtonUp" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
+        <TextBlock Grid.Column="2" 
+                   Grid.Row="0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Text="Характеристики" 
+                   FontSize="26" 
+                   FontFamily="Arial Black"/>
+        <ListView Grid.Column="2" 
+                  Grid.Row="1"
+                  x:Name="Characteristics">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding attribute}" Header="Характеристика"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding value}" Header="Значение"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Page>

@@ -43,7 +43,7 @@ namespace WpfApp1
                     Login.Text = "";
                     Password.Password = "";
                     Manager.Instance.MainFrame.Navigate(new UserPage());
-                    Manager.Instance.MenuFrame.Navigate(new UserMenuPage(LoginLists[0].system_user_id));
+                    Manager.Instance.MenuFrame.Navigate(new UserMenuPage(LoginLists[0]));
                 }
             }
             else
