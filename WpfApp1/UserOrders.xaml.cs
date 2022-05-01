@@ -56,6 +56,7 @@ namespace WpfApp1
                     }
                 ).ToList();
                 Products.ItemsSource = Data;
+                Characteristics.ItemsSource = null;
             }
         }
 

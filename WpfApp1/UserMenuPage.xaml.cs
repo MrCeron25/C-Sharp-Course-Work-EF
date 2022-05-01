@@ -39,5 +39,10 @@ namespace WpfApp1
         {
             Manager.Instance.MainFrame.Navigate(new UserOrders(User));
         }
+
+        private void MakeAnOrder_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.Instance.MainFrame.Navigate(new MakeUserOrder(User));
+        }
     }
 }

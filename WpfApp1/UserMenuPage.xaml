@@ -10,6 +10,15 @@
 
     <Grid Background="Green">
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" VerticalAlignment="Center" x:Name="UserMenu">
+            <Button x:Name="MakeAnOrder"
+                    BorderBrush="Black" 
+                    Content="Оформить заказ" 
+                    MinHeight="30"
+                    Margin="5,5,5,5"
+                    FontFamily="Arial Black"
+                    FontSize="18"
+                    Click="MakeAnOrder_Click"/>
+            
             <Button x:Name="Orders"
                     BorderBrush="Black" 
                     Content="Мои заказы" 
@@ -21,7 +30,7 @@
 
             <Button x:Name="Products"
                     BorderBrush="Black" 
-                    Content="Товары" 
+                    Content="Просмотр товаров" 
                     MinHeight="30"
                     Margin="5,5,5,5"
                     FontFamily="Arial Black"
