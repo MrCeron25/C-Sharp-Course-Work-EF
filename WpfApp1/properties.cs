@@ -14,10 +14,10 @@ namespace WpfApp1
     
     public partial class properties
     {
+        public long property_id { get; set; }
         public long product_id { get; set; }
         public string attribute { get; set; }
         public string value { get; set; }
-        public long property_id { get; set; }
     
         public virtual products products { get; set; }
     }

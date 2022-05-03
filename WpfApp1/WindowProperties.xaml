@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="WindowProperties" 
-        Height="200" 
+        Height="220" 
         Width="400"
-        MaxHeight="200"
+        MaxHeight="220"
         MaxWidth="400">
     <Grid>
         <StackPanel Orientation="Vertical">
@@ -16,17 +16,16 @@
                    HorizontalAlignment="Center"/>
             <TextBox Margin="10,10,10,10"
                      x:Name="Property"
-                     Height="20"
                      TextChanged="Property_TextChanged"/>
             <Label Content="Значение"
                    HorizontalAlignment="Center"/>
             <TextBox Margin="10,10,10,10"
                      x:Name="Value"
-                     Height="20"
                      TextChanged="Value_TextChanged"/>
-            <Button Margin="10,10,10,70"
+            <Button Margin="10,10,10,10"
                     Content="Button"
                     x:Name="Button"
+                    IsEnabled="False"
                     Click="Button_Click"/>
         </StackPanel>
     </Grid>

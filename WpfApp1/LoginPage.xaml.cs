@@ -45,7 +45,7 @@ namespace WpfApp1
                     Password.Password = "";
                     if (user.is_admin)
                     {
-                        Manager.Instance.MainFrame.Navigate(new AdminPage());
+                        Manager.Instance.MainFrame.Navigate(new ProductEditingPage());
                         Manager.Instance.MenuFrame.Navigate(new AdminMenuPage(user));
                     }
                     else

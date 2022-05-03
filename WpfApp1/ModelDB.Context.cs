@@ -13,10 +13,10 @@ namespace WpfApp1
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class course_work_EFEntities : DbContext
+    public partial class course_work_EFEntities1 : DbContext
     {
-        public course_work_EFEntities()
-            : base("name=course_work_EFEntities")
+        public course_work_EFEntities1()
+            : base("name=course_work_EFEntities1")
         {
         }
     
@@ -29,8 +29,8 @@ namespace WpfApp1
         public virtual DbSet<order_details> order_details { get; set; }
         public virtual DbSet<orders> orders { get; set; }
         public virtual DbSet<products> products { get; set; }
+        public virtual DbSet<properties> properties { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<system> system { get; set; }
-        public virtual DbSet<properties> properties { get; set; }
     }
 }

@@ -17,28 +17,17 @@ namespace WpfApp1
 {
     public partial class ProductEditingPage : Page
     {
-        private List<products> GetProducts()
-        {
-            List<products> products = (
-                from product in Manager.Instance.Context.products
-                select product
-            ).ToList();
-            return products;
-        }
 
         public ProductEditingPage()
         {
             InitializeComponent();
-            DataGrid.ItemsSource = GetProducts();
+            DataGrid.ItemsSource = Getter.GetProducts();
         }
 
         private void Change_Click(object sender, RoutedEventArgs e)
         {
-            ProductsEditingWindow window = new ProductsEditingWindow(GetProducts());
-            if ((bool)window.ShowDialog())
-            {
-
-            }
+            ProductsEditingWindow window = new ProductsEditingWindow();
+            window.ShowDialog();
         }
     }
 }

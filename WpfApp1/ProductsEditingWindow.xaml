@@ -15,7 +15,6 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -41,53 +40,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        
-        <StackPanel Orientation="Vertical"
-                    Grid.Row="0"
-                    Grid.Column="1">
-            <Label Content="Редактирование продукта"
-                   FontSize="18"
-                   HorizontalAlignment="Center"/>
-            <Label Content="Название"
-                   HorizontalAlignment="Center"/>
-            <TextBox Margin="10,10,10,10"
-                     x:Name="ProductName"
-                     IsEnabled="False"
-                     Height="20" 
-                     TextChanged="ProductName_TextChanged"/>
-            <Label Content="Цена за единицу"
-                   HorizontalAlignment="Center"/>
-            <TextBox Margin="10,10,10,10"
-                     x:Name="UnitPrice"
-                     IsEnabled="False"
-                     Height="20" 
-                     TextChanged="UnitPrice_TextChanged"/>
-            <Button Margin="10,10,10,70"
-                    Content="Сохранить"
-                    IsEnabled="False"
-                    x:Name="SaveProduct"
-                    Click="SaveProduct_Click"/>
-
-
-            <Label Content="Добавление продукта"
-                   FontSize="18"
-                   HorizontalAlignment="Center"/>
-            <Label Content="Название"
-                   HorizontalAlignment="Center"/>
-            <TextBox Margin="10,10,10,10"
-                     x:Name="ProductName_Add"
-                     IsEnabled="False"
-                     Height="20"/>
-            <Label Content="Цена за единицу"
-                   HorizontalAlignment="Center"/>
-            <TextBox Margin="10,10,10,10"
-                     x:Name="UnitPrice_Add"
-                     IsEnabled="False"
-                     Height="20"/>
-            <Button Margin="10,10,10,10"
-                    Content="Добавить"
-                    x:Name="Product_Add"/>
-        </StackPanel>
 
         <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="Left"
@@ -97,7 +49,29 @@
             <Button Margin="5,5,5,5"
                     Content="Закрыть"
                     FontSize="14"
-                    MinWidth="80"/>
+                    x:Name="Exit"
+                    MinWidth="80"
+                    Click="Exit_Click"/>
+            <Button Margin="5,5,5,5"
+                    FontSize="14"
+                    MinWidth="80"
+                    Content="Добавить"
+                    x:Name="AddProduct" 
+                    Click="AddProduct_Click"/>
+            <Button Margin="5,5,5,5"
+                    IsEnabled="False"
+                    MinWidth="80"
+                    FontSize="14"
+                    Content="Изменить"
+                    x:Name="ChangeProduct"
+                    Click="ChangeProduct_Click"/>
+            <Button Margin="5,5,5,5"
+                    IsEnabled="False"
+                    MinWidth="80"
+                    FontSize="14"
+                    Content="Удалить"
+                    x:Name="DeleteProduct"
+                    Click="DeleteProduct_Click"/>
         </StackPanel>
 
         <TextBlock Text="Характеристики" 
@@ -137,13 +111,15 @@
                     MinWidth="80"
                     FontSize="14"
                     Content="Изменить"
-                    x:Name="ChangeProperty"/>
+                    x:Name="ChangeProperty"
+                    Click="ChangeProperty_Click"/>
             <Button Margin="5,5,5,5"
                     Content="Удалить"
                     IsEnabled="False"
                     FontSize="14"
                     MinWidth="80"
-                    x:Name="DeleteProperty"/>
+                    x:Name="DeleteProperty"
+                    Click="DeleteProperty_Click"/>
         </StackPanel>
 
     </Grid>

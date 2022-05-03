@@ -48,7 +48,7 @@ create table properties(
 	[product_id] bigint not null,
 	[attribute] nvarchar(max) not null,
 	[value] nvarchar(max) not null,
-	FOREIGN KEY ([product_id]) REFERENCES products ([product_id]) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY ([product_id]) REFERENCES products ([product_id])
 );
 
 drop table if exists orders;
