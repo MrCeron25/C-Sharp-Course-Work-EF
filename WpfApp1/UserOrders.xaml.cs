@@ -8,14 +8,14 @@ namespace WpfApp1
 {
     public partial class UserOrders : Page
     {
-        private void GetOrders()
+        private List<orders> GetOrders()
         {
-            List<orders> Data = (
+            List<orders> orders = (
                 from order in Manager.Instance.Context.orders
                 where order.buyer_id == User.system_user_id
                 select order
             ).ToList();
-            Orders.ItemsSource = Data;
+            return orders;
         }
 
         private system User { get; set; }
@@ -23,7 +23,7 @@ namespace WpfApp1
         {
             InitializeComponent();
             this.User = User;
-            GetOrders();
+            Orders.ItemsSource = GetOrders();
         }
 
         public class ProductsList
@@ -66,12 +66,12 @@ namespace WpfApp1
             {
                 var product = Products.SelectedItem as ProductsList;
                 long ProductId = product.product_id;
-                List<properties> Data = (
-                    from properties in Manager.Instance.Context.properties
-                    where properties.product_id == ProductId
-                    select properties
+                List<properties> properties = (
+                    from property in Manager.Instance.Context.properties
+                    where property.product_id == ProductId
+                    select property
                 ).ToList();
-                Characteristics.ItemsSource = Data;
+                Characteristics.ItemsSource = properties;
             }
         }
     }

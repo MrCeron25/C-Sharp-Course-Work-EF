@@ -20,20 +20,8 @@
                   x:Name="DataGrid">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Название продукта" Binding="{Binding product_name}"/>
-                <DataGridTextColumn  Width="*" Header="Цена за единицу" Binding="{Binding unit_price, StringFormat='N'}">
-                    <DataGridTextColumn.ElementStyle>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="HorizontalAlignment" Value="Center" />
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn Width="*" Header="Количество покупок" Binding="{Binding number_of_orders}">
-                    <DataGridTextColumn.ElementStyle>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="HorizontalAlignment" Value="Center" />
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
+                <DataGridTextColumn  Width="*" Header="Цена за единицу" Binding="{Binding unit_price, StringFormat='N0'}"/>
+                <DataGridTextColumn Width="*" Header="Количество покупок" Binding="{Binding number_of_orders}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

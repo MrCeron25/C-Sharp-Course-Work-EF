@@ -9,13 +9,36 @@
       Title="LoginPage">
 
     <Grid Background="White">
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="Вход" Height="30" FontSize="25" TextAlignment="Center" Margin="10,10,10,10"/>
-            <TextBlock Text="Логин" Height="30" FontSize="20" TextAlignment="Center" Margin="10,10,10,10"/>
-            <TextBox Text="1" x:Name="Login" Height="30" MinWidth="200" Margin="10,10,10,10"/>
-            <TextBlock Text="Пароль" Height="30" FontSize="20" TextAlignment="Center" Margin="10,10,10,10"/>
-            <PasswordBox x:Name="Password" Password="1" Height="30" MinWidth="200" Margin="10,10,10,50"/>
-            <Button x:Name="LoginButton" Height="30" Width="120" Content="Вход" FontSize="20" Click="Login_Click"/>
+        <StackPanel Orientation="Vertical" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"
+                    MinWidth="200">
+            <TextBlock Text="Вход" 
+                       FontSize="40" 
+                       TextAlignment="Center"
+                       Margin="10,10,10,10" 
+                       Foreground="#FF0600FF"/>
+            <TextBlock Text="Логин" 
+                       FontSize="20"
+                       TextAlignment="Center"
+                       Margin="10,10,10,10"/>
+            <TextBox Text="1" 
+                     x:Name="Login" 
+                     Height="30" 
+                     Margin="10,10,10,10"/>
+            <TextBlock Text="Пароль" 
+                       FontSize="20" 
+                       TextAlignment="Center" 
+                       Margin="10,10,10,10"/>
+            <PasswordBox x:Name="Password" 
+                         Password="1"
+                         Height="30" 
+                         Margin="10,10,10,50"/>
+            <Button x:Name="LoginButton" 
+                    Height="30" 
+                    Content="Вход" 
+                    FontSize="20" 
+                    Click="Login_Click"/>
         </StackPanel>
     </Grid>
 </Page>

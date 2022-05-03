@@ -57,9 +57,9 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding product_name}" Header="Название товара"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding unit_price, StringFormat='N'}" Header="Цена за единицу"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding unit_price, StringFormat='N0'}" Header="Цена за единицу"/>
                     <GridViewColumn DisplayMemberBinding="{Binding quantity}" Header="Количество"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding total_price, StringFormat='N'}" Header="Итоговая цена"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding total_price, StringFormat='N0'}" Header="Итоговая цена"/>
                 </GridView>
             </ListView.View>
             <ListView.ItemContainerStyle>

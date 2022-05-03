@@ -1,0 +1,37 @@
+﻿<Page x:Class="WpfApp1.AdminMenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AdminMenuPage">
+
+    <Grid Background="Pink">
+        <StackPanel Grid.Row="0" 
+                    Grid.Column="0" 
+                    Orientation="Vertical" 
+                    VerticalAlignment="Center" 
+                    x:Name="AdminMenu">
+            <Button x:Name="ProductEditing"
+                    BorderBrush="Black" 
+                    Content="Редактирование товаров" 
+                    MinHeight="30"
+                    Margin="5,5,5,5"
+                    FontFamily="Arial Black"
+                    FontSize="18"
+                    Click="ProductEditing_Click"/>
+
+            <Button x:Name="Exit"
+                    BorderBrush="Black" 
+                    Content="Выход" 
+                    MinHeight="30"
+                    Margin="5,5,5,5"
+                    FontFamily="Arial Black"
+                    FontSize="18"
+                    Click="Exit_Click"/>
+
+        </StackPanel>
+    </Grid>
+</Page>

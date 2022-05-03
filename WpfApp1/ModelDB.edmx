@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище course_work_EFModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище course_work_EFModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="buyer">
           <Key>
             <PropertyRef Name="buyer_id" />
@@ -42,14 +42,11 @@
           <Property Name="unit_price" Type="money" />
           <Property Name="number_of_orders" Type="bigint" Nullable="false" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "course_work_EF.dbo.properties" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="properties">
           <Key>
-            <PropertyRef Name="product_id" />
-            <PropertyRef Name="attribute" />
-            <PropertyRef Name="value" />
+            <PropertyRef Name="property_id" />
           </Key>
+          <Property Name="property_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="product_id" Type="bigint" Nullable="false" />
           <Property Name="attribute" Type="nvarchar(max)" Nullable="false" />
           <Property Name="value" Type="nvarchar(max)" Nullable="false" />
@@ -73,7 +70,7 @@
           <Property Name="password" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="is_admin" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK__order_det__order__7108AC61">
+        <Association Name="FK__order_det__order__1AE9D794">
           <End Role="orders" Type="Self.orders" Multiplicity="1" />
           <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
           <ReferentialConstraint>
@@ -85,7 +82,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__order_det__produ__71FCD09A">
+        <Association Name="FK__order_det__produ__1BDDFBCD">
           <End Role="products" Type="Self.products" Multiplicity="1" />
           <End Role="order_details" Type="Self.order_details" Multiplicity="*" />
           <ReferentialConstraint>
@@ -97,7 +94,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__orders__buyer_id__6E2C3FB6">
+        <Association Name="FK__orders__buyer_id__180D6AE9">
           <End Role="buyer" Type="Self.buyer" Multiplicity="1" />
           <End Role="orders" Type="Self.orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -109,8 +106,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__propertie__produ__6A5BAED2">
-          <End Role="products" Type="Self.products" Multiplicity="1" />
+        <Association Name="FK__propertie__produ__143CDA05">
+          <End Role="products" Type="Self.products" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="properties" Type="Self.properties" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="products">
@@ -121,7 +120,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__system__system_u__6596F9B5">
+        <Association Name="FK__system__system_u__0E8400AF">
           <End Role="buyer" Type="Self.buyer" Multiplicity="1" />
           <End Role="system" Type="Self.system" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -138,38 +137,31 @@
           <EntitySet Name="order_details" EntityType="Self.order_details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="properties" EntityType="Self.properties" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="system" EntityType="Self.system" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="properties" EntityType="Self.properties" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [properties].[product_id] AS [product_id], 
-    [properties].[attribute] AS [attribute], 
-    [properties].[value] AS [value]
-    FROM [dbo].[properties] AS [properties]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK__order_det__order__7108AC61" Association="Self.FK__order_det__order__7108AC61">
+          <AssociationSet Name="FK__order_det__order__1AE9D794" Association="Self.FK__order_det__order__1AE9D794">
             <End Role="orders" EntitySet="orders" />
             <End Role="order_details" EntitySet="order_details" />
           </AssociationSet>
-          <AssociationSet Name="FK__order_det__produ__71FCD09A" Association="Self.FK__order_det__produ__71FCD09A">
+          <AssociationSet Name="FK__order_det__produ__1BDDFBCD" Association="Self.FK__order_det__produ__1BDDFBCD">
             <End Role="products" EntitySet="products" />
             <End Role="order_details" EntitySet="order_details" />
           </AssociationSet>
-          <AssociationSet Name="FK__orders__buyer_id__6E2C3FB6" Association="Self.FK__orders__buyer_id__6E2C3FB6">
+          <AssociationSet Name="FK__orders__buyer_id__180D6AE9" Association="Self.FK__orders__buyer_id__180D6AE9">
             <End Role="buyer" EntitySet="buyer" />
             <End Role="orders" EntitySet="orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__propertie__produ__6A5BAED2" Association="Self.FK__propertie__produ__6A5BAED2">
+          <AssociationSet Name="FK__propertie__produ__143CDA05" Association="Self.FK__propertie__produ__143CDA05">
             <End Role="products" EntitySet="products" />
             <End Role="properties" EntitySet="properties" />
           </AssociationSet>
-          <AssociationSet Name="FK__system__system_u__6596F9B5" Association="Self.FK__system__system_u__6596F9B5">
+          <AssociationSet Name="FK__system__system_u__0E8400AF" Association="Self.FK__system__system_u__0E8400AF">
             <End Role="buyer" EntitySet="buyer" />
             <End Role="system" EntitySet="system" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="course_work_EFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -243,11 +235,13 @@
             <PropertyRef Name="product_id" />
             <PropertyRef Name="attribute" />
             <PropertyRef Name="value" />
+            <PropertyRef Name="property_id" />
           </Key>
           <Property Name="product_id" Type="Int64" Nullable="false" />
           <Property Name="attribute" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="products" Relationship="Self.FK__propertie__produ__6A5BAED2" FromRole="properties" ToRole="products" />
+          <Property Name="property_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <Association Name="FK__orders__buyer_id__6E2C3FB6">
           <End Role="buyer" Type="Self.buyer" Multiplicity="1" />
@@ -408,6 +402,7 @@
           <EntitySetMapping Name="properties">
             <EntityTypeMapping TypeName="course_work_EFModel.properties">
               <MappingFragment StoreEntitySet="properties">
+                <ScalarProperty Name="property_id" ColumnName="property_id" />
                 <ScalarProperty Name="product_id" ColumnName="product_id" />
                 <ScalarProperty Name="attribute" ColumnName="attribute" />
                 <ScalarProperty Name="value" ColumnName="value" />

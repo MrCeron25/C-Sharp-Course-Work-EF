@@ -15,9 +15,12 @@ using System.Windows.Shapes;
 
 namespace WpfApp1
 {
-    public partial class UserPage : Page
+    /// <summary>
+    /// Логика взаимодействия для AdminPage.xaml
+    /// </summary>
+    public partial class AdminPage : Page
     {
-        public UserPage()
+        public AdminPage()
         {
             InitializeComponent();
         }

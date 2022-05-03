@@ -19,7 +19,7 @@ namespace WpfApp1
     public partial class MakeUserOrder : Page
     {
         private system User { get; set; }
-        private decimal? TotalPrice { get; set; }
+        private decimal TotalPrice { get; set; }
         private void UpdateProducts()
         {
             var data = (
@@ -45,10 +45,10 @@ namespace WpfApp1
             TotalPrice = 0;
         }
 
-        private void UpdateTotalPrice(decimal? price)
+        private void UpdateTotalPrice(decimal price)
         {
             TotalPrice += price;
-            TotalPriceText.Text = TotalPrice.ToString();
+            TotalPriceText.Text = TotalPrice.ToString("N0");
             CheckBuy();
         }
 
@@ -65,7 +65,7 @@ namespace WpfApp1
                     if (Product.product_name == ProductInItems.product_name)
                     {
                         OrderDetails.Items.Remove(ProductInItems);
-                        TotalPrice -= ProductInItems.total_price;
+                        TotalPrice -= (decimal)ProductInItems.total_price;
 
                         Product.quantity += long.Parse(ProductCount.Text);
                         Product.total_price = Product.quantity * Product.unit_price;
@@ -82,7 +82,7 @@ namespace WpfApp1
                     OrderDetails.Items.Add(Product);
                 }
 
-                UpdateTotalPrice(Product.total_price);
+                UpdateTotalPrice((decimal)Product.total_price);
                 ProductCount.Text = "";
                 Products.SelectedItem = null;
             }
@@ -147,7 +147,7 @@ namespace WpfApp1
             if (OrderDetails.SelectedItem != null)
             {
                 ProductsList Product = OrderDetails.SelectedItem as ProductsList;
-                UpdateTotalPrice(-Product.total_price);
+                UpdateTotalPrice(-(decimal)Product.total_price);
                 OrderDetails.Items.Remove(Product);
                 DeleteOrderDetails.IsEnabled = false;
                 OrderDetails.SelectedItem = null;

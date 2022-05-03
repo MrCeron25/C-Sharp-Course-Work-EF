@@ -72,7 +72,7 @@ namespace WpfApp1
                             Manager.Instance.Context.buyer.Add(NewBuyer);
 
                             List<buyer> buyer = (
-                                from buyers in Manager.Instance.Context.buyer.OrderByDescending(s => s.buyer_id).Take(1)
+                                from buyers in Manager.Instance.Context.buyer.OrderByDescending(s => s.buyer_id)
                                 select buyers
                             ).ToList();
                             long LastBuyerId = buyer[0].buyer_id + 1;

@@ -67,6 +67,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdminMenuPage.xaml.cs">
+      <DependentUpon>AdminMenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPage.xaml.cs">
+      <DependentUpon>AdminPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="buyer.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -101,8 +107,14 @@
     <Compile Include="order_details.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductEditingPage.xaml.cs">
+      <DependentUpon>ProductEditingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="products.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductsEditingWindow.xaml.cs">
+      <DependentUpon>ProductsEditingWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="properties.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
@@ -128,6 +140,17 @@
     <Compile Include="ViewProducts.xaml.cs">
       <DependentUpon>ViewProducts.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowProperties.xaml.cs">
+      <DependentUpon>WindowProperties.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AdminMenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -152,6 +175,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ProductEditingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductsEditingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RegistrationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -169,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ViewProducts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowProperties.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

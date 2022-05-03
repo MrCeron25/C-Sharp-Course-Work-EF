@@ -36,7 +36,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding product_name}" Header="Название товара"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding unit_price, StringFormat='N2'}" Header="Цена за единицу"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding unit_price, StringFormat='N0'}" Header="Цена за единицу"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -78,9 +78,9 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding product_name}" Header="Название товара"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding unit_price, StringFormat='N2'}" Header="Цена за единицу"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding unit_price, StringFormat='N0'}" Header="Цена за единицу"/>
                     <GridViewColumn DisplayMemberBinding="{Binding quantity}" Header="Количество"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding total_price, StringFormat='N2'}" Header="Итого"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding total_price, StringFormat='N0'}" Header="Итого"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -101,7 +101,7 @@
                        FontSize="18"/>
             <TextBlock x:Name="TotalPriceText"
                        HorizontalAlignment="Center"
-                       Text="0,0000"
+                       Text="0"
                        Foreground="Red"
                        FontSize="16"/>
             <Button 

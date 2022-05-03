@@ -40,10 +40,19 @@ namespace WpfApp1
                 }
                 else
                 {
+                    system user = LoginLists[0];
                     Login.Text = "";
                     Password.Password = "";
-                    Manager.Instance.MainFrame.Navigate(new UserPage());
-                    Manager.Instance.MenuFrame.Navigate(new UserMenuPage(LoginLists[0]));
+                    if (user.is_admin)
+                    {
+                        Manager.Instance.MainFrame.Navigate(new AdminPage());
+                        Manager.Instance.MenuFrame.Navigate(new AdminMenuPage(user));
+                    }
+                    else
+                    {
+                        Manager.Instance.MainFrame.Navigate(new UserPage());
+                        Manager.Instance.MenuFrame.Navigate(new UserMenuPage(user));
+                    }
                 }
             }
             else

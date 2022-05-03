@@ -44,10 +44,11 @@ create table products(
 
 drop table if exists properties;
 create table properties(
+	[property_id] bigint not null identity primary key,
 	[product_id] bigint not null,
 	[attribute] nvarchar(max) not null,
 	[value] nvarchar(max) not null,
-	FOREIGN KEY ([product_id]) REFERENCES products ([product_id])
+	FOREIGN KEY ([product_id]) REFERENCES products ([product_id]) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 drop table if exists orders;
@@ -125,8 +126,8 @@ insert into buyer([name], [surname], sex) values
 ('Гуляева', 'Анита', 'Ж');
 
 insert into [system]([system_user_id],[login],[password],[is_admin]) values
-(1,'1', '1', 0),
-(2,'2', '1', 1),
+(1,'1', '1', 1),
+(2,'2', '2', 0),
 (3,'user3', 'BRQtbB0urH5UgQVfAZ9X', 1),
 (4,'user4', 'LKhjjyegydQc4RyJGN20', 1),
 (5,'user5', '9nznfooE20WqAviwV36J', 1),
