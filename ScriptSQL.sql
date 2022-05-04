@@ -203,3 +203,17 @@ insert into properties(product_id, attribute, [value]) values
 (8, 'Материал корпуса', 'пластик, металл'),
 (9, 'Модель', 'Lenovo Go USB-C Wireless Mouse');
 
+/*
+insert into orders([buyer_id],order_date) values
+(1,DATEADD(year,1,GETDATE()));
+
+insert into order_details(order_id, product_id, unit_price, quantity) values
+(11, 1, 50500, 3);
+
+select 
+	YEAR(o.order_date),
+	sum(od.total_price)
+from orders o
+join order_details od on o.order_id = od.order_id
+group by o.order_date
+*/

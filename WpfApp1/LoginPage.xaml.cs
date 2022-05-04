@@ -45,13 +45,13 @@ namespace WpfApp1
                     Password.Password = "";
                     if (user.is_admin)
                     {
-                        Manager.Instance.MainFrame.Navigate(new ProductEditingPage());
-                        Manager.Instance.MenuFrame.Navigate(new AdminMenuPage(user));
+                        Manager.Instance.MainFrame.Content = new ProductEditingPage();
+                        Manager.Instance.MenuFrame.Content = new AdminMenuPage(user);
                     }
                     else
                     {
-                        Manager.Instance.MainFrame.Navigate(new UserPage());
-                        Manager.Instance.MenuFrame.Navigate(new UserMenuPage(user));
+                        Manager.Instance.MainFrame.Content = new UserPage();
+                        Manager.Instance.MenuFrame.Content = new UserMenuPage(user);
                     }
                 }
             }

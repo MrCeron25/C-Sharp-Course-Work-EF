@@ -26,23 +26,23 @@ namespace WpfApp1
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            Manager.Instance.MainFrame.Navigate(new LoginPage());
-            Manager.Instance.MenuFrame.Navigate(new MainMenuPage());
+            Manager.Instance.MainFrame.Content = new LoginPage();
+            Manager.Instance.MenuFrame.Content = new MainMenuPage();
         }
 
         private void Products_Click(object sender, RoutedEventArgs e)
         {
-            Manager.Instance.MainFrame.Navigate(new ViewProducts());
+            Manager.Instance.MainFrame.Content = new ViewProducts();
         }
 
         private void Orders_Click(object sender, RoutedEventArgs e)
         {
-            Manager.Instance.MainFrame.Navigate(new UserOrders(User));
+            Manager.Instance.MainFrame.Content = new UserOrders(User);
         }
 
         private void MakeAnOrder_Click(object sender, RoutedEventArgs e)
         {
-            Manager.Instance.MainFrame.Navigate(new MakeUserOrder(User));
+            Manager.Instance.MainFrame.Content = new MakeUserOrder(User);
         }
     }
 }

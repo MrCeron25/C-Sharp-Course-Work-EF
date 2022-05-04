@@ -95,6 +95,7 @@ namespace WpfApp1
                         if (IsGood)
                         {
                             MessageBox.Show("Вы зарегистрированы.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                            Manager.Instance.MainFrame.Content = new LoginPage();
                         }
                     }
                 }

@@ -11,16 +11,6 @@
         WindowState="Maximized"
         MinHeight="700"
         MinWidth="1100">
-    <Window.Resources>
-        <ControlTemplate TargetType="Button" 
-                         x:Key="ButtonTemplate">
-            <Border CornerRadius="20"
-                    Margin="10,5,10,10"
-                    BorderThickness="2"
-                    Height="40"
-                    Background="#FFFFF2C9"/>
-        </ControlTemplate>
-    </Window.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>

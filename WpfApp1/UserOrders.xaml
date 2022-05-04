@@ -30,6 +30,7 @@
 
         <ListView Grid.Column="0" 
                   Grid.Row="1"
+                  SelectionMode="Single"
                   x:Name="Orders">
             <ListView.View>
                 <GridView>
@@ -53,6 +54,7 @@
                    FontFamily="Arial Black"/>
         <ListView Grid.Column="1" 
                  Grid.Row="1"
+                  SelectionMode="Single"
                  x:Name="Products">
             <ListView.View>
                 <GridView>
@@ -78,6 +80,7 @@
                    FontFamily="Arial Black"/>
         <ListView Grid.Column="2" 
                   Grid.Row="1"
+                  SelectionMode="Single"
                   x:Name="Characteristics">
             <ListView.View>
                 <GridView>

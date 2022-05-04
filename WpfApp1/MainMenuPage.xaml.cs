@@ -23,12 +23,12 @@ namespace WpfApp1
         }
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            Manager.Instance.MainFrame.Navigate(new LoginPage());
+            Manager.Instance.MainFrame.Content = new LoginPage();
         }
 
         private void Registration_Click(object sender, RoutedEventArgs e)
         {
-            Manager.Instance.MainFrame.Navigate(new RegistrationPage());
+            Manager.Instance.MainFrame.Content = new RegistrationPage();
         }
     }
 }

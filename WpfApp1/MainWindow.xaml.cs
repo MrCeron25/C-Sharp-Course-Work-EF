@@ -24,10 +24,10 @@ namespace WpfApp1
             Manager.Instance.MainWindow = this;
 
             Manager.Instance.MainFrame = MainFrame;
-            Manager.Instance.MainFrame.Navigate(new LoginPage());
+            Manager.Instance.MainFrame.Content = new LoginPage();
 
             Manager.Instance.MenuFrame = MenuFrame;
-            Manager.Instance.MenuFrame.Navigate(new MainMenuPage());
+            Manager.Instance.MenuFrame.Content = new MainMenuPage();
         }
     }
 }
