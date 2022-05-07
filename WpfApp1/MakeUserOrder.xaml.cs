@@ -124,6 +124,11 @@ namespace WpfApp1
         private void Products_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CheckAddButton();
+            if (Products.SelectedItem != null)
+            {
+                ProductsList product = Products.SelectedItem as ProductsList;
+                Characteristics.ItemsSource = Getter.GetProperties(product.product_id);
+            }
         }
 
         private void ProductCount_TextChanged(object sender, TextChangedEventArgs e)
@@ -178,7 +183,7 @@ namespace WpfApp1
             Manager.Instance.Context.SaveChanges();
             OrderDetails.Items.Clear();
             Buy.IsEnabled = false;
-            TotalPriceText.Text = "0,0000";
+            TotalPriceText.Text = "0";
             MessageBox.Show("Покупка прошла успешно.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }

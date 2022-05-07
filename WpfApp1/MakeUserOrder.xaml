@@ -12,10 +12,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="140"/>
+            <RowDefinition Height="120"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.8*"/>
+            <ColumnDefinition Width="0.6*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -62,7 +63,31 @@
                     Click="Add_Click"/>
         </StackPanel>
 
+
         <TextBlock Grid.Column="1" 
+                   Grid.Row="0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Text="Характеристики" 
+                   FontSize="20" 
+                   FontFamily="Arial Black"/>
+
+        <ListView Grid.Column="1" 
+                  Grid.Row="1"
+                  Grid.RowSpan="2"
+                  Margin="10,10,10,10"
+                  x:Name="Characteristics">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding attribute}" Header="Название"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding value}" Header="Значение"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+
+        <TextBlock Grid.Column="2" 
                    Grid.Row="0"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
@@ -70,7 +95,7 @@
                    FontSize="26" 
                    FontFamily="Arial Black"/>
 
-        <ListView Grid.Column="1" 
+        <ListView Grid.Column="2" 
                   Grid.Row="1"
                   Margin="10,10,10,10"
                   x:Name="OrderDetails" 
@@ -88,7 +113,7 @@
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Bottom"
-                    Grid.Column="1" 
+                    Grid.Column="2" 
                     Grid.Row="2">
             <Button 
                 x:Name="DeleteOrderDetails"

@@ -25,7 +25,7 @@ namespace WpfApp1
 
         private void Statistics_Click(object sender, RoutedEventArgs e)
         {
-           Manager.Instance.MainFrame.Content = new StatisticPage();
+            Manager.Instance.MainFrame.Content = new StatisticPage();
         }
     }
 }

@@ -42,7 +42,6 @@ namespace WpfApp1
                     Year = g.Key.order_date.Year,
                     Sum = g.Sum(i => i.total_price)
                 }
-
             ).ToList();
             return statistics;
         }
@@ -55,7 +54,6 @@ namespace WpfApp1
 
         private void SaveStatistics_Click(object sender, RoutedEventArgs e)
         {
-            string PathDirectory = Directory.GetCurrentDirectory();
             string FileName = "Statistic.txt";
             using (FileStream fs = new FileStream(FileName, FileMode.Create, FileAccess.Write))
             {

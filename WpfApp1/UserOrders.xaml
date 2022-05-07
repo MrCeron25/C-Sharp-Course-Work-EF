@@ -31,6 +31,7 @@
         <ListView Grid.Column="0" 
                   Grid.Row="1"
                   SelectionMode="Single"
+                  SelectionChanged="Orders_SelectionChanged"
                   x:Name="Orders">
             <ListView.View>
                 <GridView>
@@ -38,11 +39,6 @@
                     <GridViewColumn DisplayMemberBinding="{Binding order_date, StringFormat='dd-MM-yyyy'}" Header="Дата заказа"/>
                 </GridView>
             </ListView.View>
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <EventSetter Event="MouseLeftButtonUp" Handler="Orders_MouseLeftButtonUp" />
-                </Style>
-            </ListView.ItemContainerStyle>
         </ListView>
         
         <TextBlock Grid.Column="1" 
@@ -55,6 +51,7 @@
         <ListView Grid.Column="1" 
                  Grid.Row="1"
                   SelectionMode="Single"
+                  SelectionChanged="Products_SelectionChanged"
                  x:Name="Products">
             <ListView.View>
                 <GridView>
@@ -64,11 +61,6 @@
                     <GridViewColumn DisplayMemberBinding="{Binding total_price, StringFormat='N0'}" Header="Итоговая цена"/>
                 </GridView>
             </ListView.View>
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <EventSetter Event="MouseLeftButtonUp" Handler="Products_MouseLeftButtonUp" />
-                </Style>
-            </ListView.ItemContainerStyle>
         </ListView>
 
         <TextBlock Grid.Column="2" 

@@ -1,47 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace WpfApp1
 {
+    public class ProductsList
+    {
+        public long product_id { get; set; }
+        public string product_name { get; set; }
+        public long number_of_orders { get; set; }
+        public decimal? unit_price { get; set; }
+        public long? quantity { get; set; }
+        public decimal? total_price { get; set; }
+    }
+
     public partial class UserOrders : Page
     {
-        private List<orders> GetOrders()
-        {
-            List<orders> orders = (
-                from order in Manager.Instance.Context.orders
-                where order.buyer_id == User.system_user_id
-                select order
-            ).ToList();
-            return orders;
-        }
-
         private system User { get; set; }
         public UserOrders(system User)
         {
             InitializeComponent();
             this.User = User;
-            Orders.ItemsSource = GetOrders();
+            Orders.ItemsSource = Getter.GetOrders(User.system_user_id);
         }
 
-        public class ProductsList
-        {
-            public long product_id { get; set; }
-            public string product_name { get; set; }
-            public long number_of_orders { get; set; }
-            public decimal? unit_price { get; set; }
-            public long? quantity { get; set; }
-            public decimal? total_price { get; set; }
-        }
-
-        private void Orders_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void Orders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (Orders.SelectedItem != null)
             {
                 long OrderId = (Orders.SelectedItem as orders).order_id;
-                var Data = (
+                List<ProductsList> Data = (
                     from o in Manager.Instance.Context.order_details
                     join p in Manager.Instance.Context.products on o.product_id equals p.product_id
                     where o.order_id == OrderId
@@ -60,11 +49,11 @@ namespace WpfApp1
             }
         }
 
-        private void Products_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void Products_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (Products.SelectedItem != null)
             {
-                var product = Products.SelectedItem as ProductsList;
+                ProductsList product = Products.SelectedItem as ProductsList;
                 long ProductId = product.product_id;
                 List<properties> properties = (
                     from property in Manager.Instance.Context.properties
